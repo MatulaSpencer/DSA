@@ -1,0 +1,74 @@
+package com.mycompany.arraysexample;
+
+import java.util.Arrays;
+
+/**
+ *
+ * @author spenc
+ */
+public class ArraysExample {
+
+    private final int[] array;
+    private int size;
+
+
+    public ArraysExample(int initialCapacity) {
+        array = new int[initialCapacity];
+        size = 0;
+    }
+
+
+    public void add(int element, int index) {
+        if (index < 0 || index > size) {
+            System.out.println("Invalid index.");
+            return;
+        }
+
+        // Shift elements to the right to make space for the new element
+        for (int i = size; i > index; i--) {
+            array[i] = array[i - 1];
+        }
+        
+        // Insert the element
+        array[index] = element;
+        size++;
+
+        System.out.println("Element added at index " + index + ": " + element);
+    }
+
+    // Delete element at a specific index
+    public void delete(int index) {
+        if (index < 0 || index >= size) {
+            System.out.println("Invalid index.");
+            return;
+        }
+
+        // Shift elements to the left to fill the gap
+        for (int i = index; i < size - 1; i++) {
+            array[i] = array[i + 1];
+        }
+
+        size--;
+        System.out.println("Element deleted from index " + index);
+    }
+
+    // Print current array
+    public void printArray() {
+        System.out.println("Current array: " + Arrays.toString(Arrays.copyOf(array, size)));
+    }
+
+    public static void main(String[] args) {
+        ArraysExample arrExample = new ArraysExample(10);
+
+        // Adding elements
+        arrExample.add(10, 0); // Add 10 at index 0
+        arrExample.add(20, 1); // Add 20 at index 1
+        arrExample.add(30, 2); // Add 30 at index 2
+        arrExample.add(15, 1); // Add 15 at index 1
+        arrExample.printArray();
+
+        // Deleting elements
+        arrExample.delete(2); // Delete element at index 2
+        arrExample.printArray();
+    }
+}
