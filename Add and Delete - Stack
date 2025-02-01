@@ -1,0 +1,49 @@
+package com.mycompany.stackexample;
+
+import java.util.LinkedList;
+
+public class StackExample {
+    private LinkedList<Integer> stack;
+
+    public StackExample() {
+        stack = new LinkedList<>();
+    }
+
+    // Push (Add) an element to the stack
+    public void push(int value) {
+        stack.addFirst(value);
+        System.out.println(value + " added to the stack.");
+    }
+
+    // Pop (Delete) an element from the stack
+    public int pop() {
+        if (stack.isEmpty()) {
+            System.out.println("Stack is empty. Cannot delete.");
+            return -1;
+        }
+        int removedValue = stack.removeFirst();
+        System.out.println(removedValue + " removed from the stack.");
+        return removedValue;
+    }
+
+    // Display the stack elements
+    public void display() {
+        if (stack.isEmpty()) {
+            System.out.println("Stack is empty.");
+        } else {
+            System.out.println("Stack contents: " + stack);
+        }
+    }
+
+    public static void main(String[] args) {
+        StackExample myStack = new StackExample();
+        
+        myStack.push(10);
+        myStack.push(20);
+        myStack.push(30);
+        myStack.display();
+
+        myStack.pop();
+        myStack.display();
+    }
+}
